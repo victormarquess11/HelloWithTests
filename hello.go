@@ -11,29 +11,47 @@ const spanish = "Spanish"
 const french = "French"
 
 func Hello(name string, language string) string {
-	prefix := englishHelloPrefix
+	prefix := greetingPrefix(language)
+	name = greetingPosfix(name, language)
 
-	switch language {
-	case english:
-		prefix = englishHelloPrefix
-		if name == "" {
+	return prefix + name
+}
+
+func greetingPosfix(name string, language string) (posfix string) {
+
+	if name == "" {
+		switch language {
+		default:
 			name = "World"
-		}
+		case english:
+			name = "World"
 
-	case french:
-		prefix = frenchHelloPrefix
-		if name == "" {
+		case french:
 			name = "Monde"
-		}
 
-	case spanish:
-		prefix = spanishHelloPrefix
-		if name == "" {
+		case spanish:
 			name = "Mundo"
 		}
 	}
 
-	return prefix + name
+	return name
+}
+
+func greetingPrefix(language string) (prefix string) {
+	switch language {
+	default:
+		prefix = greetingPrefix(english)
+	case english:
+		prefix = englishHelloPrefix
+
+	case french:
+		prefix = frenchHelloPrefix
+
+	case spanish:
+		prefix = spanishHelloPrefix
+	}
+
+	return
 }
 
 func main() {
