@@ -2,16 +2,31 @@ package main
 
 import "testing"
 
+const englishLanguage = "English"
+const spanishLanguage = "Spanish"
+
 func TestHello(t *testing.T) {
-	t.Run("saying hello to people", func(t *testing.T) {
-		got := Hello("Chris")
+	t.Run("english saying hello to people", func(t *testing.T) {
+		got := Hello("Chris", englishLanguage)
 		want := "Hello, Chris"
 		assertCorrectMessage(t, got, want)
 	})
 
-	t.Run("say 'Hello, World' when an empty string is supplied", func(t *testing.T) {
-		got := Hello("")
+	t.Run("english say 'Hello, World' when an empty string is supplied", func(t *testing.T) {
+		got := Hello("", englishLanguage)
 		want := "Hello, World"
+		assertCorrectMessage(t, got, want)
+	})
+
+	t.Run("spanish saying hello to people", func(t *testing.T) {
+		got := Hello("Chris", spanishLanguage)
+		want := "Hola, Chris"
+		assertCorrectMessage(t, got, want)
+	})
+
+	t.Run("spanish say 'Hello, World' when an empty string is supplied", func(t *testing.T) {
+		got := Hello("", spanishLanguage)
+		want := "Hola, Mundo"
 		assertCorrectMessage(t, got, want)
 	})
 }
