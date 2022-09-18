@@ -4,6 +4,7 @@ import "testing"
 
 const englishLanguage = "English"
 const spanishLanguage = "Spanish"
+const frenchLanguage = "French"
 
 func TestHello(t *testing.T) {
 	t.Run("english saying hello to people", func(t *testing.T) {
@@ -27,6 +28,18 @@ func TestHello(t *testing.T) {
 	t.Run("spanish say 'Hello, World' when an empty string is supplied", func(t *testing.T) {
 		got := Hello("", spanishLanguage)
 		want := "Hola, Mundo"
+		assertCorrectMessage(t, got, want)
+	})
+
+	t.Run("french saying hello to people", func(t *testing.T) {
+		got := Hello("Chris", frenchLanguage)
+		want := "Bonjour, Chris"
+		assertCorrectMessage(t, got, want)
+	})
+
+	t.Run("french say 'Hello, World' when an empty string is supplied", func(t *testing.T) {
+		got := Hello("", frenchLanguage)
+		want := "Bonjour, Monde"
 		assertCorrectMessage(t, got, want)
 	})
 }
